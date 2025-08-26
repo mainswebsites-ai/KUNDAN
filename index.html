@@ -1,0 +1,775 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kundan Wasudeo Ingle - Portfolio</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Added Favicon Link -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+    
+    :root {
+      --primary: #F7931E;
+      --secondary: #138808;
+      --accent: #06038D;
+      --light: #f8f9fa;
+      --dark: #212529;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light);
+      color: var(--dark);
+      margin: 0;
+      padding: 0;
+    }
+    
+    .playfair {
+      font-family: 'Playfair Display', serif;
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, rgba(247, 147, 30, 0.15) 0%, rgba(19, 136, 8, 0.1) 100%);
+      min-height: 85vh; /* Reduced hero height */
+      padding-top: 4rem; /* Added padding to prevent content from being hidden by sticky nav */
+      padding-bottom: 4rem;
+    }
+    
+    .nav-link {
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: var(--primary);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .skill-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .portfolio-item:hover .portfolio-overlay {
+      opacity: 1;
+    }
+    
+    .portfolio-overlay {
+      transition: opacity 0.3s ease;
+    }
+    
+    .section-title {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 3px;
+      bottom: -8px;
+      left: 0;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+    }
+
+    /* Mobile menu specific styles */
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%; /* Position below the nav */
+      right: 0;
+      background-color: white;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 150px; /* Adjust as needed */
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+
+    /* Achievements section specific styles */
+    .achievement-item {
+      background-color: var(--light);
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .achievement-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Testimonial card styles */
+    .testimonial-card {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .testimonial-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border: 3px solid var(--primary);
+    }
+
+    /* Blog card styles */
+    .blog-card {
+      background-color: white;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .blog-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-2"> <!-- Reduced vertical padding -->
+      <div class="flex justify-between items-center">
+        <div class="text-xl font-bold playfair" style="color: var(--accent);"> <!-- Reduced font size -->
+          Kundan Wasudeo Ingle
+        </div>
+        <div class="hidden md:flex space-x-6"> <!-- Reduced space-x -->
+          <a href="#home" class="nav-link text-gray-700 hover:text-gray-900 text-sm">Home</a> <!-- Reduced font size -->
+          <a href="#about" class="nav-link text-gray-700 hover:text-gray-900 text-sm">About</a>
+          <a href="#skills" class="nav-link text-gray-700 hover:text-gray-900 text-sm">Skills</a>
+          <a href="#portfolio" class="nav-link text-gray-700 hover:text-gray-900 text-sm">Portfolio</a>
+          <a href="#achievements" class="nav-link text-gray-700 hover:text-gray-900 text-sm">Achievements</a>
+          <a href="#testimonials" class="nav-link text-gray-700 hover:text-gray-900 text-sm">Testimonials</a>
+          <a href="#blog" class="nav-link text-gray-700 hover:text-gray-900 text-sm">Blog</a>
+          <a href="#contact" class="nav-link text-gray-700 hover:text-gray-900 text-sm">Contact</a>
+        </div>
+        <button class="md:hidden focus:outline-none" aria-label="Toggle mobile menu" id="mobile-menu-button">
+          <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <!-- Reduced icon size -->
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu md:hidden">
+      <a href="#home" class="nav-link text-gray-700 hover:text-gray-900 text-sm py-2">Home</a>
+      <a href="#about" class="nav-link text-gray-700 hover:text-gray-900 text-sm py-2">About</a>
+      <a href="#skills" class="nav-link text-gray-700 hover:text-gray-900 text-sm py-2">Skills</a>
+      <a href="#portfolio" class="nav-link text-gray-700 hover:text-gray-900 text-sm py-2">Portfolio</a>
+      <a href="#achievements" class="nav-link text-gray-700 hover:text-gray-900 text-sm py-2">Achievements</a>
+      <a href="#testimonials" class="nav-link text-gray-700 hover:text-gray-900 text-sm py-2">Testimonials</a>
+      <a href="#blog" class="nav-link text-gray-700 hover:text-gray-900 text-sm py-2">Blog</a>
+      <a href="#contact" class="nav-link text-gray-700 hover:text-gray-900 text-sm py-2">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero min-h-screen flex items-center py-16"> <!-- Adjusted padding -->
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-8 md:mb-0"> <!-- Reduced margin-bottom -->
+          <h1 class="text-3xl md:text-5xl font-bold playfair mb-3"> <!-- Reduced font sizes -->
+            Kundan Wasudeo <span class="text-primary" style="color: var(--primary);">Ingle</span> <br> <span class="text-xl md:text-3xl">Member, Telephone Advisory Committee, Ministry of Telecommunication & IT, Govt. of India</span>
+          </h1>
+          <p class="text-lg md:text-xl mb-5"> <!-- Reduced font sizes -->
+            <span class="border-r-2 border-gray-300 pr-2 mr-2">Professional</span>
+            <span class="border-r-2 border-gray-300 pr-2 mr-2">Innovator</span>
+            <span>Leader</span>
+          </p>
+          <p class="text-gray-600 mb-6 text-sm"> <!-- Reduced font size -->
+            Crafting excellence through dedication, innovation, and cultural heritage.
+          </p>
+          <div class="flex space-x-3"> <!-- Reduced space-x -->
+            <a href="#contact" class="px-5 py-2 bg-primary text-white rounded-lg text-sm hover:bg-opacity-90 transition" style="background-color: var(--primary);"> <!-- Reduced padding and font size -->
+              Get In Touch
+            </a>
+            <a href="#portfolio" class="px-5 py-2 border-2 border-gray-300 text-gray-700 rounded-lg text-sm hover:border-primary hover:text-primary transition"> <!-- Reduced padding and font size -->
+              View Work
+            </a>
+          </div>
+        </div>
+        <div class="md:w-1/2 flex justify-center">
+          <img src="Ingle.jpg" alt="Professional portrait of Kundan Wasudeo Ingle, wearing traditional Indian formal attire with modern styling" class="rounded-lg shadow-2xl max-w-full h-auto border-4 border-white"> <!-- Reduced border -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-16 bg-white"> <!-- Reduced vertical padding -->
+    <div class="container mx-auto px-6">
+      <h2 class="text-2xl font-bold playfair mb-12 text-center section-title">About Me</h2> <!-- Reduced font size and margin -->
+      
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/3 grid grid-cols-2 gap-3 mb-8 md:mb-0"> <!-- Reduced gap and margin -->
+          <img src="1.jpg" alt="Blood Donation Camp" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="3.jpg" alt="Kundan Wasudeo Ingle in a SOCIAL Activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="4.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="5.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="6.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="7.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="8.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="9.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="10.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="11.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="12.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="13.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="14.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="15.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="16.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="17.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="18.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="19.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="20.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="21.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="22.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="23.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="24.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="25.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="26.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="27.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="29.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+          <img src="30.jpg" alt="Kundan Wasudeo Ingle engaging in social activity" class="rounded-lg shadow-md w-full h-auto object-cover">
+        </div>
+        <div class="md:w-2/3 md:pl-10"> <!-- Reduced padding-left -->
+          <h3 class="text-xl font-semibold playfair mb-3">Biography</h3> <!-- Reduced font size -->
+          <p class="text-gray-600 mb-5 text-sm"> <!-- Reduced font size -->
+            From the vibrant heart of Maharashtra, Kundan Wasudeo Ingle emerges as a visionary leader, seamlessly weaving the rich tapestry of Indian heritage with the dynamic threads of modern professionalism. He is a bridge between tradition and innovation, approaching every endeavor with profound wisdom, unwavering integrity, and a pioneering spirit.
+          </p>
+          
+          <h3 class="text-xl font-semibold playfair mb-3 mt-6">Professional Journey: A Legacy of Impact</h3> <!-- Reduced font size and margin -->
+          <p class="text-gray-600 mb-2 text-sm"> <!-- Reduced font size -->
+            **Director Identification Number (DIN):** 08792315 (Status: Approved, Last Updated: 03-01-2025)
+          </p>
+          <p class="text-gray-600 mb-5 text-sm"> <!-- Reduced font size -->
+            With over 15 years of transformative leadership, Kundan has not just held positions, but has shaped industries and empowered communities:
+          </p>
+          <ul class="list-disc pl-5 text-gray-600 space-y-1 mb-6 text-sm"> <!-- Reduced space-y and margin -->
+            <li>**Catalyst for Growth:** Founded and scaled successful ventures, contributing significantly to India's economic landscape.</li>
+            <li>**Global Collaborator:** Spearheaded cross-cultural projects, fostering international synergy and understanding.</li>
+            <li>**Mentor & Guide:** Actively mentors the next generation, instilling values of excellence and ethical practice.</li>
+            <li>**Advocate for Change:** Championed sustainable and ethical business practices, setting new benchmarks for corporate responsibility.</li>
+            <li>**Pivotal Roles:**
+              <ul class="list-disc pl-5 mt-1 space-y-0.5">
+                <li>**National Working President:** ALL INDIA CONSUMER PROTECTION COMMITTEE.</li>
+                <li>**Member (TAC):** TELEPHONE ADVISORY COMMITTEE, Ministry of Telecommunication & IT, Govt. of India.</li>
+                <li>**Chief Managing Director:** INTERNATIONAL CORPORATE SKILL FOUNDATION PVT. LTD.</li>
+                <li>**Managing Director:** INTERNATIONAL SCHOOL OF INNOVATION FOUNDATION, DHANKUR IT SOLUTIONS PRIVATE LIMITED, RASHA-INDIA CONSULTING BUSINESS SET UP LLP, SWARAJYA HELITOUR AVIATION INDIA.</li>
+                <li>**National Advisor:** AKHIL BHARTIYA VIMUKT JATI JAMATI MAHASANGH.</li>
+                <li>**General Secretary Maharashtra:** INTERNATIONAL HUMAN RIGHT PROTECTION COUNCIL.</li>
+                <li>**Active Member:** RSS / BJP.</li>
+              </ul>
+            </li>
+          </ul>
+
+          <h3 class="text-xl font-semibold playfair mb-3 mt-6">Social & Community Engagement: Building a Better Tomorrow</h3>
+          <ul class="list-disc pl-5 text-gray-600 space-y-1 mb-6 text-sm">
+            <li>**Dedicated Social Worker:** A tireless advocate, organizing and participating in diverse community welfare initiatives.</li>
+            <li>**Health & Wellness Crusader:** Orchestrates vital Blood Donation and Health Check-up Camps for students, seniors, and marginalized communities, with a special focus on empowering downtrodden women.</li>
+            <li>**Architect of Awareness:** Leads impactful Social Awareness Camps, promoting:
+              <ul class="list-disc pl-5 mt-1 space-y-0.5">
+                <li>Self-defense (Judo Karate for Girls) & Holistic Well-being (Yoga for Students).</li>
+                <li>Family Counselling, Employment & Self-Employment Training for Women's Self Help Groups and minorities.</li>
+                <li>Road Safety and critical Social Surveys for vulnerable populations.</li>
+              </ul>
+            </li>
+            <li>**Pioneer in Sustainable Agriculture:** Directs innovative projects in Cow Dairy, Poultry, Medicinal Plants, Organic Farming, and Vermi Compost, fostering rural economic growth.</li>
+            <li>**Custodian of Culture & Sports:** Organizes vibrant traditional festivals (Dahi Handi, Ganesh Pooja, Diwali Pahat) and promotes youth engagement through sports events.</li>
+            <li>**Empowerment Through Skill:** Establishes and manages Skill Development Centres, igniting entrepreneurial spirit and providing crucial training (Technical, Non-Technical, Agriculture) to youth and SHGs.</li>
+          </ul>
+          
+          <div class="bg-gray-50 p-5 rounded-lg"> <!-- Reduced padding -->
+            <h4 class="text-lg font-semibold playfair mb-3">Personal Philosophy: The Maratha Spirit</h4> <!-- Reduced font size -->
+            <p class="text-gray-600 italic text-sm"> <!-- Reduced font size -->
+              "My journey is guided by a simple truth: true success blossoms from selfless service, anchored in unwavering values. The indomitable Maratha spirit of courage and duty fuels my resolve, while the demands of a modern world sharpen my adaptability and vision. I strive to build, to uplift, and to inspire, always with a deep reverence for my roots."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-16" style="background-color: rgba(247, 147, 30, 0.05);"> <!-- Reduced vertical padding -->
+    <div class="container mx-auto px-6">
+      <h2 class="text-2xl font-bold playfair mb-12 text-center section-title">Skills & Expertise</h2> <!-- Reduced font size and margin -->
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6"> <!-- Reduced gap -->
+        <!-- Skill Card 1 -->
+        <div class="skill-card bg-white p-5 rounded-lg shadow-md transition duration-300 ease-in-out"> <!-- Reduced padding -->
+          <div class="flex justify-center mb-3"> <!-- Reduced margin -->
+            <div class="w-14 h-14 rounded-full flex items-center justify-center" style="background-color: rgba(247, 147, 30, 0.1);"> <!-- Reduced size -->
+              <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/69070bab-715b-46b1-a65c-9f85bebcf236.png" alt="Icon representing leadership and management" class="w-8 h-8"> <!-- Reduced icon size -->
+            </div>
+          </div>
+          <h3 class="text-lg font-semibold playfair text-center mb-2">Leadership</h3> <!-- Reduced font size and margin -->
+          <p class="text-gray-600 text-center text-sm"> <!-- Reduced font size -->
+            Proven track record of building and leading high-performance teams across diverse cultural contexts.
+          </p>
+        </div>
+        
+        <!-- Skill Card 2 -->
+        <div class="skill-card bg-white p-5 rounded-lg shadow-md transition duration-300 ease-in-out">
+          <div class="flex justify-center mb-3">
+            <div class="w-14 h-14 rounded-full flex items-center justify-center" style="background-color: rgba(19, 136, 8, 0.1);">
+              <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2b51090f-d809-41bb-9725-e8f7867857a6.png" alt="Icon representing strategic planning" class="w-8 h-8">
+            </div>
+          </div>
+          <h3 class="text-lg font-semibold playfair text-center mb-2">Strategic Planning</h3>
+          <p class="text-gray-600 text-center text-sm">
+            Expert in developing long-term strategies that balance innovation, risk, and sustainability.
+          </p>
+        </div>
+        
+        <!-- Skill Card 3 -->
+        <div class="skill-card bg-white p-5 rounded-lg shadow-md transition duration-300 ease-in-out">
+          <div class="flex justify-center mb-3">
+            <div class="w-14 h-14 rounded-full flex items-center justify-center" style="background-color: rgba(6, 3, 141, 0.1);">
+              <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b400c81b-c1d1-4c81-b2bf-c2ddc2400507.png" alt="Icon representing cultural intelligence" class="w-8 h-8">
+            </div>
+          </div>
+          <h3 class="text-lg font-semibold playfair text-center mb-2">Cultural Intelligence</h3>
+          <p class="text-gray-600 text-center text-sm">
+            Deep understanding of global business practices with authentic Indian perspective and values.
+          </p>
+        </div>
+      </div>
+      
+      <div class="mt-12"> <!-- Reduced margin -->
+        <h3 class="text-xl font-semibold playfair mb-6 text-center">Technical Proficiencies</h3> <!-- Reduced font size and margin -->
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-3"> <!-- Reduced gap -->
+          <div class="flex flex-col items-center">
+            <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-md mb-1"> <!-- Reduced size and margin -->
+              <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8a1b84e8-6bd9-4723-9c3b-c266aa0969da.png" alt="Business analysis icon" class="w-8 h-8"> <!-- Reduced icon size -->
+            </div>
+            <span class="text-xs font-medium">Business Analysis</span> <!-- Reduced font size -->
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-md mb-1">
+              <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a1b4885a-1a7f-4c44-9730-ecb946686c96.png" alt="Financial modeling icon" class="w-8 h-8">
+            </div>
+            <span class="text-xs font-medium">Financial Modeling</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-md mb-1">
+              <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5dc8527e-f561-4d9a-af5a-7f15f9ffa9b3.png" alt="Market research icon" class="w-8 h-8">
+            </div>
+            <span class="text-xs font-medium">Market Research</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-md mb-1">
+              <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1d16f3fa-1edf-44da-ae82-64c2517b8938.png" alt="Project management icon" class="w-8 h-8">
+            </div>
+            <span class="text-xs font-medium">Project Management</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-md mb-1">
+              <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a8556049-c238-453f-b0d3-eec3cca9b4ff.png" alt="Public speaking icon" class="w-8 h-8">
+            </div>
+            <span class="text-xs font-medium">Public Speaking</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="py-16 bg-white"> <!-- Reduced vertical padding -->
+    <div class="container mx-auto px-6">
+      <h2 class="text-2xl font-bold playfair mb-12 text-center section-title">Portfolio</h2> <!-- Reduced font size and margin -->
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> <!-- Reduced gap -->
+        <!-- Portfolio Item 1 -->
+        <div class="portfolio-item rounded-lg overflow-hidden shadow-md relative"> <!-- Reduced shadow -->
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7bce0dc7-1a52-490e-9e01-854ffaf94ff6.png" alt="Corporate headquarters building project led by Kundan Wasudeo Ingle" class="w-full h-56 object-cover"> <!-- Reduced height -->
+          <div class="portfolio-overlay absolute inset-0 bg-primary bg-opacity-90 opacity-0 flex flex-col justify-end p-4" style="background-color: rgba(247, 147, 30, 0.9);"> <!-- Reduced padding -->
+            <h3 class="text-lg font-semibold playfair text-white mb-1">Corporate Transformation</h3> <!-- Reduced font size and margin -->
+            <p class="text-white mb-3 text-sm">Led digital transformation for ₹500 crore manufacturing company</p> <!-- Reduced font size and margin -->
+            <a href="#" class="text-white underline text-xs">View Case Study</a> <!-- Reduced font size -->
+          </div>
+        </div>
+        
+        <!-- Portfolio Item 2 -->
+        <div class="portfolio-item rounded-lg overflow-hidden shadow-md relative">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/dd1eaf9e-0ad0-4cc6-9337-35837d9d9c0c.png" alt="Rural development project implemented in Maharashtra" class="w-full h-56 object-cover">
+          <div class="portfolio-overlay absolute inset-0 bg-secondary bg-opacity-90 opacity-0 flex flex-col justify-end p-4" style="background-color: rgba(19, 136, 8, 0.9);">
+            <h3 class="text-lg font-semibold playfair text-white mb-1">Rural Development</h3>
+            <p class="text-white mb-3 text-sm">Sustainable livelihood program in Maharashtra villages</p>
+            <a href="#" class="text-white underline text-xs">Read More</a>
+          </div>
+        </div>
+        
+        <!-- Portfolio Item 3 -->
+        <div class="portfolio-item rounded-lg overflow-hidden shadow-md relative">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b0b593c4-4d39-4b02-8a68-af640e6555b2.png" alt="Educational initiative impact report" class="w-full h-56 object-cover">
+          <div class="portfolio-overlay absolute inset-0 bg-accent bg-opacity-90 opacity-0 flex flex-col justify-end p-4" style="background-color: rgba(6, 3, 141, 0.9);">
+            <h3 class="text-lg font-semibold playfair text-white mb-1">Education Initiative</h3>
+            <p class="text-white mb-3 text-sm">100+ scholarships for underprivileged students</p>
+            <a href="#" class="text-white underline text-xs">Learn More</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-10"> <!-- Reduced margin -->
+        <a href="#" class="px-5 py-2 border-2 border-primary text-primary rounded-lg text-sm hover:bg-primary hover:text-white transition inline-block"> <!-- Reduced padding and font size -->
+          View Complete Portfolio
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements & Recognition Section -->
+  <section id="achievements" class="py-16" style="background-color: rgba(247, 147, 30, 0.05);">
+    <div class="container mx-auto px-6">
+      <h2 class="text-2xl font-bold playfair mb-12 text-center section-title">Achievements & Recognition</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="achievement-item">
+          <h3 class="text-lg font-semibold playfair mb-2">National Leadership Award</h3>
+          <p class="text-gray-600 text-sm">Awarded for outstanding contributions to consumer protection and advocacy at a national level.</p>
+        </div>
+        <div class="achievement-item">
+          <h3 class="text-lg font-semibold playfair mb-2">Community Impact Excellence</h3>
+          <p class="text-gray-600 text-sm">Recognized for significant positive impact through various social and health initiatives in Maharashtra.</p>
+        </div>
+        <div class="achievement-item">
+          <h3 class="text-lg font-semibold playfair mb-2">Innovation in Skill Development</h3>
+          <p class="text-gray-600 text-sm">Honored for pioneering new models in skill development and entrepreneurship training across India.</p>
+        </div>
+        <div class="achievement-item">
+          <h3 class="text-lg font-semibold playfair mb-2">Agricultural Development Pioneer</h3>
+          <p class="text-gray-600 text-sm">Acknowledged for leading sustainable agricultural projects and promoting organic farming practices.</p>
+        </div>
+        <div class="achievement-item">
+          <h3 class="text-lg font-semibold playfair mb-2">Youth Empowerment Champion</h3>
+          <p class="text-gray-600 text-sm">Awarded for dedicated efforts in youth mentorship, sports promotion, and educational support.</p>
+        </div>
+        <div class="achievement-item">
+          <h3 class="text-lg font-semibold playfair mb-2">Cultural Preservation Advocate</h3>
+          <p class="text-gray-600 text-sm">Recognized for organizing and promoting traditional Indian cultural activities and festivals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+      <h2 class="text-2xl font-bold playfair mb-12 text-center section-title">What People Say</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="testimonial-card">
+          <img src="bgs.jpeg" alt="Client 1">
+          <p class="text-gray-700 italic mb-4 text-sm">"Kundan's leadership transformed our project. His vision and dedication are truly inspiring."</p>
+          <p class="font-semibold text-primary text-sm">- Bibishant Jadhav,</p>
+        </div>
+        <div class="testimonial-card">
+          <img src="bhute.jpg" alt="Colleague 2">
+          <p class="text-gray-700 italic mb-4 text-sm">"Working with Kundan is a privilege. His commitment to social welfare is unmatched."</p>
+          <p class="font-semibold text-secondary text-sm">- Mangesh Bhute</p>
+        </div>
+        <div class="testimonial-card">
+          <img src="rj.jpeg" alt="Partner 3">
+          <p class="text-gray-700 italic mb-4 text-sm">"An exceptional professional who blends traditional values with modern business acumen seamlessly."</p>
+          <p class="font-semibold text-accent text-sm">- Janmejay Singh Rajput, Business Partner</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog/Insights Section -->
+  <section id="blog" class="py-16" style="background-color: rgba(19, 136, 8, 0.05);">
+    <div class="container mx-auto px-6">
+      <h2 class="text-2xl font-bold playfair mb-12 text-center section-title">Latest Insights</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="blog-card">
+          <img src="Digital-India.jpg" alt="Digital Transformation">
+          <div class="p-6">
+            <h3 class="text-lg font-semibold playfair mb-2">The Future of Digital Transformation in India</h3>
+            <p class="text-gray-600 text-sm mb-4">Exploring how Indian businesses can leverage digital technologies for sustainable growth.</p>
+            <a href="#" class="text-primary hover:underline text-sm font-medium">Read Article &rarr;</a>
+          </div>
+        </div>
+        <div class="blog-card">
+          <img src="Innovation-management.jpg" alt="Rural Empowerment">
+          <div class="p-6">
+            <h3 class="text-lg font-semibold playfair mb-2">Empowering Rural Communities: A Holistic Approach</h3>
+            <p class="text-gray-600 text-sm mb-4">Insights into successful strategies for rural development and livelihood creation.</p>
+            <a href="#" class="text-secondary hover:underline text-sm font-medium">Read Article &rarr;</a>
+          </div>
+        </div>
+        <div class="blog-card">
+          <img src="download.jpeg" alt="Leadership Values">
+          <div class="p-6">
+            <h3 class="text-lg font-semibold playfair mb-2">Leadership in the 21st Century: Blending Tradition with Innovation</h3>
+            <p class="text-gray-600 text-sm mb-4">My thoughts on effective leadership principles rooted in Indian values.</p>
+            <a href="#" class="text-accent hover:underline text-sm font-medium">Read Article &rarr;</a>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-10">
+        <a href="#" class="px-5 py-2 border-2 border-primary text-primary rounded-lg text-sm hover:bg-primary hover:text-white transition inline-block">
+          View All Insights
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 bg-white"> <!-- Changed background to white for contrast -->
+    <div class="container mx-auto px-6">
+      <h2 class="text-2xl font-bold playfair mb-12 text-center section-title">Get In Touch</h2> <!-- Reduced font size and margin -->
+      
+      <div class="flex flex-col md:flex-row">
+        <div class="md:w-1/2 mb-8 md:mb-0"> <!-- Reduced margin -->
+          <h3 class="text-xl font-semibold playfair mb-4">Contact Information</h3> <!-- Reduced font size -->
+          
+          <div class="space-y-4"> <!-- Reduced space-y -->
+            <div class="flex items-start">
+              <div class="flex-shrink-0 mr-3"> <!-- Reduced margin -->
+                <div class="w-9 h-9 rounded-full flex items-center justify-center" style="background-color: rgba(247, 147, 30, 0.15);"> <!-- Reduced size -->
+                  <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/71efa0fc-eb99-4b8a-a6b1-0096a8014782.png" alt="Email icon" class="w-5 h-5"> <!-- Reduced icon size -->
+                </div>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-700 text-sm">Email</h4> <!-- Reduced font size -->
+                <p class="text-gray-600 text-sm">inglek421@gmail.com</p> <!-- Reduced font size -->
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="flex-shrink-0 mr-3">
+                <div class="w-9 h-9 rounded-full flex items-center justify-center" style="background-color: rgba(19, 136, 8, 0.15);">
+                  <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9dcf7361-baa0-4e7d-a1da-c02981b65a13.png" alt="Phone icon" class="w-5 h-5">
+                </div>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-700 text-sm">Mobile Phone</h4>
+                <p class="text-gray-600 text-sm">95116 11925</p>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div class="flex-shrink-0 mr-3">
+                <div class="w-9 h-9 rounded-full flex items-center justify-center" style="background-color: rgba(19, 136, 8, 0.15);">
+                  <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9dcf7361-baa0-4e7d-a1da-c02981b65a13.png" alt="Phone icon" class="w-5 h-5">
+                </div>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-700 text-sm">Office Phone</h4>
+                <p class="text-gray-600 text-sm">011-2303 6255</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="flex-shrink-0 mr-3">
+                <div class="w-9 h-9 rounded-full flex items-center justify-center" style="background-color: rgba(6, 3, 141, 0.15);">
+                  <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d66317c7-ccb8-4722-b8f6-e118220c29d4.png" alt="Location icon" class="w-5 h-5">
+                </div>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-700 text-sm">Residential Address</h4>
+                <p class="text-gray-600 text-sm">42, Shivparivati Niwas, Shri Mahalaxmi Nagar, Nagpur - 440034</p>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div class="flex-shrink-0 mr-3">
+                <div class="w-9 h-9 rounded-full flex items-center justify-center" style="background-color: rgba(6, 3, 141, 0.15);">
+                  <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d66317c7-ccb8-4722-b8f6-e118220c29d4.png" alt="Location icon" class="w-5 h-5">
+                </div>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-700 text-sm">Office Address</h4>
+                <p class="text-gray-600 text-sm">516, Sanchar Bhavan # 20, Ashok Road, New Delhi - 110001</p>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div class="flex-shrink-0 mr-3">
+                <div class="w-9 h-9 rounded-full flex items-center justify-center" style="background-color: rgba(6, 3, 141, 0.15);">
+                  <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b400c81b-c1d1-4c81-b2bf-c2ddc2400507.png" alt="Department icon" class="w-5 h-5">
+                </div>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-700 text-sm">Department Information</h4>
+                <p class="text-gray-600 text-sm">Department of Telecommunication, Ministry of Telecommunication & IT, Govt. of India</p>
+              </div>
+            </div>
+          </div>
+          
+          <h3 class="text-xl font-semibold playfair mt-10 mb-4">Connect With Me</h3> <!-- Reduced margin -->
+          <div class="flex space-x-3"> <!-- Reduced space-x -->
+            <a href="#" class="w-9 h-9 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-primary hover:text-white transition"> <!-- Reduced size -->
+              <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/14ec6032-571f-4638-8075-208c1ef9f2bd.png" alt="LinkedIn logo" class="w-4 h-4"> <!-- Reduced icon size -->
+            </a>
+            <a href="#" class="w-9 h-9 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-blue-500 hover:text-white transition">
+              <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/45444f97-b755-4a70-ac27-460218b4e349.png" alt="Twitter logo" class="w-4 h-4">
+            </a>
+            <a href="#" class="w-9 h-9 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-pink-600 hover:text-white transition">
+              <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4e0a8257-1add-4662-9d5c-01c15e488c3c.png" alt="Instagram logo" class="w-4 h-4">
+            </a>
+          </div>
+        </div>
+        
+        <div class="md:w-1/2 md:pl-10"> <!-- Reduced padding-left -->
+          <form class="bg-white p-6 rounded-lg shadow-md"> <!-- Reduced padding -->
+            <h3 class="text-xl font-semibold playfair mb-4">Send a Message</h3> <!-- Reduced font size -->
+            
+            <div class="mb-3"> <!-- Reduced margin -->
+              <label for="name" class="block text-gray-700 mb-1 text-sm">Full Name</label> <!-- Reduced margin and font size -->
+              <input type="text" id="name" class="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary"> <!-- Reduced padding and font size -->
+            </div>
+            
+            <div class="mb-3">
+              <label for="email" class="block text-gray-700 mb-1 text-sm">Email Address</label>
+              <input type="email" id="email" class="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary">
+            </div>
+            
+            <div class="mb-3">
+              <label for="subject" class="block text-gray-700 mb-1 text-sm">Subject</label>
+              <input type="text" id="subject" class="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary">
+            </div>
+            
+            <div class="mb-4"> <!-- Reduced margin -->
+              <label for="message" class="block text-gray-700 mb-1 text-sm">Message</label>
+              <textarea id="message" rows="4" class="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary"></textarea> <!-- Reduced rows and padding -->
+            </div>
+            
+            <button type="submit" class="w-full px-5 py-2 bg-primary text-white rounded-lg text-sm hover:bg-opacity-90 transition" style="background-color: var(--primary);"> <!-- Reduced padding and font size -->
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-10"> <!-- Reduced vertical padding -->
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-5 md:mb-0"> <!-- Reduced margin -->
+          <div class="text-xl font-bold playfair mb-1" style="color: var(--primary);"> <!-- Reduced font size and margin -->
+            Kundan W. Ingle
+          </div>
+          <p class="text-gray-300 text-sm">Bringing tradition and innovation together.</p> <!-- Reduced font size -->
+        </div>
+        
+        <div class="flex flex-col md:flex-row md:space-x-10 space-y-3 md:space-y-0"> <!-- Reduced space-x and space-y -->
+          <div>
+            <h4 class="text-base font-semibold mb-3 playfair">Navigation</h4> <!-- Reduced font size and margin -->
+            <ul class="space-y-1.5"> <!-- Reduced space-y -->
+              <li><a href="#home" class="text-gray-300 hover:text-primary transition text-sm">Home</a></li> <!-- Reduced font size -->
+              <li><a href="#about" class="text-gray-300 hover:text-primary transition text-sm">About</a></li>
+              <li><a href="#skills" class="text-gray-300 hover:text-primary transition text-sm">Skills</a></li>
+              <li><a href="#portfolio" class="text-gray-300 hover:text-primary transition text-sm">Portfolio</a></li>
+              <li><a href="#achievements" class="text-gray-300 hover:text-primary transition text-sm">Achievements</a></li>
+              <li><a href="#testimonials" class="text-gray-300 hover:text-primary transition text-sm">Testimonials</a></li>
+              <li><a href="#blog" class="text-gray-300 hover:text-primary transition text-sm">Blog</a></li>
+              <li><a href="#contact" class="text-gray-300 hover:text-primary transition text-sm">Contact</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 class="text-base font-semibold mb-3 playfair">Legal</h4>
+            <ul class="space-y-1.5">
+              <li><a href="#" class="text-gray-300 hover:text-primary transition text-sm">Privacy Policy</a></li>
+              <li><a href="#" class="text-gray-300 hover:text-primary transition text-sm">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-700 mt-6 pt-6 flex flex-col md:flex-row justify-between items-center"> <!-- Reduced margin and padding -->
+        <p class="text-gray-400 text-xs mb-3 md:mb-0"> <!-- Reduced font size and margin -->
+          © 2023 Kundan Wasudeo Ingle. All rights reserved.
+        </p>
+        <div class="text-gray-400 text-xs"> <!-- Reduced font size -->
+          Crafted with <span class="text-primary" style="color: var(--primary);">pride</span> in India
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('active');
+    });
+    
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if(targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if(targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80, // Adjusted offset for smaller nav
+            behavior: 'smooth'
+          });
+          // Close mobile menu after clicking a link
+          const mobileMenu = document.getElementById('mobile-menu');
+          if (mobileMenu.classList.contains('active')) {
+            mobileMenu.classList.remove('active');
+          }
+        }
+      });
+    });
+    
+    // Form submission
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      
+      if(name && email) {
+        alert('Thank you for your message, ' + name + '! I will get back to you soon.');
+        this.reset();
+      } else {
+        alert('Please fill in all required fields.');
+      }
+    });
+  </script>
+</body>
+</html>
